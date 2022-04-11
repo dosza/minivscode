@@ -46,16 +46,16 @@ ipcMain.on('renderer/salvar_arquivo', async (event, mensagem) => {
     const conteudoDoArquivo = mensagem
     const { filePath, canceled } = await dialog.showSaveDialog()
 
-    if (canceled){
-        event.reply('main/salvar_arquivo', {status: 400, msg: 'Usuário cancelou'})
+    if (canceled) {
+        event.reply('main/salvar_arquivo', { status: 400, msg: 'Usuário cancelou' })
         return false
     }
 
-    writeFile(filePath, conteudoDoArquivo, 'utf-8', (err,result) => {
+    writeFile(filePath, conteudoDoArquivo, 'utf-8', (err, result) => {
         if (err) throw err;
-        
+
         event.reply('main/salvar_arquivo', {
-            status: 200, body:  { 
+            status: 200, body: {
                 filePath: filePath
             }
         })
