@@ -34,9 +34,7 @@
 
         <div class="container_editor">
             <textarea id="editor">
-            function myScript(){
-                return 200;
-            }</textarea>
+           </textarea>
         </div>
     </div>
     <script type="text/javascript">
@@ -65,8 +63,8 @@
             console.log(mainMessage)
         })
 
-        ipcRenderer.on('main/abri_arquivo', function (event, mainMessage) {
-            console.log(mainMessage)
+        ipcRenderer.on('main/abrir_arquivo', function (event, mainMessage) {
+            $myCodeMirror.setValue(mainMessage.data)
         })
 
     </script>
