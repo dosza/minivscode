@@ -1,5 +1,8 @@
 # MinivsCode Hibrid Editor  #
 
+<p align=center className="logo">
+  <img src="https://github.com/dosza/minivscode/blob/main/public/minivscode.png">
+
 Sobre
 ---
 É um "editor de texto" baseado no tutorial [mini-vscode](https://www.youtube.com/watch?v=NOxZ8-hZCZ0&t=520s)
