@@ -7,7 +7,7 @@ require("electron-reload")(__dirname, {
 
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
-const { writeFile } = require('fs')
+const { writeFile, readFile } = require('fs')
 let win
 
 function createWindow() {
@@ -20,8 +20,9 @@ function createWindow() {
         }
     })
     win.loadURL(`file:///${__dirname}/index.html`)
+    //win.webContents.openDevTools()
     win.removeMenu()
-    // win.webContents.openDevTools()
+
 }
 
 
@@ -59,6 +60,24 @@ ipcMain.on('renderer/salvar_arquivo', async (event, mensagem) => {
                 filePath: filePath
             }
         })
+    })
+
+})
+
+ipcMain.on('renderer/abrir_arquivo', async (event, message) => {
+    const { filePaths, canceled } = await dialog.showOpenDialog()
+    if (canceled) {
+        event.reply('main/abrir_arquivo', { status: 400, msg: 'Usuário cancelou' })
+        return false
+    }
+
+
+    readFile(filePaths[0], 'utf-8',(err, text) => {
+        if (err) throw err;
+        event.reply('main/abrir_arquivo', {
+            status: 200, 
+            data:text
+        });
     })
 
 })
