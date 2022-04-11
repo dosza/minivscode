@@ -14,6 +14,30 @@ Funcionalidades
 - [x]   Abrir Arquivo 
 - [x]   Salvar Arquivo 
 - [ ]   Fechar Arquivo
+- [ ]   Implementar *ContextIsolation*
 - [ ]   Detectar formato de arquivo e atualizar o high-light 
 - [ ]   Salvar as preferencias do editor *.preferences.json*
 
+
+
+Getting Started
+---
+Instalando as dependencias
+
+Getting Started!
+---
+Clonando projeto
+```console
+user@pc:~$ git clone https://github.com/dosza/minivscode.git
+```
+Instalando as dependencias 
+```console
+user@pc:~$ cd minivscode
+user@pc:~$ #Configuração de dependencias
+user@pc:~$ yarn
+```
+Iniciando A aplicação
+```console
+user@pc:~$ #Inicialização a aplicação
+user@pc:~$ yarn dev
+```
