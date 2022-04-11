@@ -1,0 +1,69 @@
+<html>
+
+<head>
+    <title>Mini VSCode AluraJS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width-device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://codemirror.net/theme/monokai.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.2/mode/javascript/javascript.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="button_bar">
+                <button id="btnAbrir" onclick="abrirArquivo()"><i class="fa fa-folder-open-o" aria-hidden="true"></i>
+                </button>
+                <button id="btnSalvar" onclick="salvarArquivo()"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                </button>
+                <div class="logo_app">
+                    <h1>Mini </h1>
+                    <img id="logo"
+                        src="https://user-images.githubusercontent.com/674621/71187801-14e60a80-2280-11ea-94c9-e56576f76baf.png" />
+                </div>
+            </div>
+
+        </header>
+
+        <div class="container_editor">
+            <textarea id="editor">
+            function myScript(){
+                return 200;
+            }</textarea>
+        </div>
+    </div>
+    <script type="text/javascript">
+        const $myCodeMirror = CodeMirror.fromTextArea(document.querySelector('#editor'), {
+            lineNumbers: true,
+            theme: 'monokai',
+            mode: 'javascript'
+        })
+
+        const { ipcRenderer } = require('electron')
+
+        function salvarArquivo() {
+            const conteudoDoArquivo = $myCodeMirror.getValue();
+            ipcRenderer.send('renderer/salvar_arquivo', conteudoDoArquivo)
+
+        }
+
+        function abrirArquivo() {
+            ipcRenderer.send('renderer/abrir_arquivo', '')
+        }
+
+        ipcRenderer.on('main/salvar_arquivo', function (event, mainMessage) {
+            console.log(mainMessage)
+        })
+
+        ipcRenderer.on('main/abri_arquivo', function (event, mainMessage) {
+            console.log(mainMessage)
+        })
+
+    </script>
+</body>
+
+</html>

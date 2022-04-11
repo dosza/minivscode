@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    overflow: auto;
+
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    background-color: #262626;
+
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    background-color: #262626;
+}
+
+.button_bar {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0.125rem;
+    padding: 0.125rem;
+}
+
+.logo_app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    margin: 0.25rem;
+    padding: 0.25rem;
+    height: 100%;
+    width: 100%;
+}
+
+#logo {
+    width: 1.25rem;
+    height: 1.25rem;
+    padding: 0.0625rem;
+    margin: 0.0625rem;
+}
+
+.logo_app h1 {
+    color: white;
+    font-size: 1rem;
+}
+
+.container_editor {
+    margin: 0.25rem;
+    padding: 0.25rem;
+    width: 100%;
+    height: 100%;
+
+}
+
+button {
+    border: 0;
+    border-radius: 0.25rem;
+    background: #0078d7;
+    color: white;
+    padding: 0.125rem;
+    margin: 0.125rem;
+    font-size: 1rem;
+}
+
+.CodeMirror {
+    border: 1px line #ffffff;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.cm-s-monokai.CodeMirror {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 0.25rem;
+    height: 0.0625rem;
+}

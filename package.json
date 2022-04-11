@@ -1,0 +1,13 @@
+{
+  "name": "minivscode",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "electron ."
+  },
+  "dependencies": {
+    "electron": "^18.0.3",
+    "electron-reload": "^2.0.0-alpha.1"
+  }
+}
