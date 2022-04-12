@@ -7,6 +7,7 @@
 
 body {
     overflow: auto;
+    background-color: #262626;
 
 }
 
@@ -95,8 +96,20 @@ button {
 
 /* width */
 ::-webkit-scrollbar {
-    width: 0.25rem;
-    height: 0.0625rem;
+    width: 0.5rem;
+    height: 0.25rem;
+    background-color: #262626;
+    display: none;
+}
+
+.CodeMirror ::-webkit-scrollbar{
+    display: block;
+}
+.CodeMirror ::-webkit-scrollbar-thumb {
+    background-color: gray;
+    width: 1rem;
+    height: 0.5rem;
+    border-radius: 0.5rem;
 }
 
 #menu {
