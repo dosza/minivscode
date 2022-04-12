@@ -117,10 +117,23 @@ button {
 #menu.open {
     visibility: visible;
     width: 20%;
-    height:40%;
-    left: 80%;
+    height: 25%;
+    left: 79.5%;
+}
+
+.menu_title {
+    padding: 0.25rem;
+    margin: 0.25rem;
 }
 
 .menu_list {
     list-style: none;
+}
+
+#menu ul li {
+    position: relative;
+    top: 1.125rem;
+    font-size: 0.9rem;
+   /* border-bottom: 1px solid #ffffff;*/
+    padding: 0.25rem;
 }
