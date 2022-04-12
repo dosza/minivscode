@@ -125,13 +125,14 @@ button {
     visibility: hidden;
     z-index: 2;
     border-radius: 0.5rem;
+    overflow: auto;
 }
 
 #menu.open {
     visibility: visible;
     width: 20%;
-    height: 25%;
-    left: 79.5%;
+    height: 40%;
+    left: 79.2%;
 }
 
 .menu_title {
@@ -141,11 +142,12 @@ button {
 
 .menu_list {
     list-style: none;
+    height: 100%;
 }
 
 #menu ul li {
     position: relative;
-    top: 1.125rem;
+    top: 1.0rem;
     font-size: 0.9rem;
    /* border-bottom: 1px solid #ffffff;*/
     padding: 0.25rem;
