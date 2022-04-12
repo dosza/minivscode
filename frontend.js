@@ -1,16 +1,16 @@
-const $myCodeMirror = CodeMirror.fromTextArea(document.querySelector('#editor'), {
-    lineNumbers: true,
-    theme: 'monokai',
-    mode: 'javascript'
-})
+const { ipcRenderer } = require('electron')
+
 
 let currentOpenFile = '';
 let currentOpenDialog  = false
 let currentSaveDialog = false
 const divMenu = document.querySelector('#menu')
-// divMenu.addEventListener('click',handleMenu)
 
-const { ipcRenderer } = require('electron')
+const $myCodeMirror = CodeMirror.fromTextArea(document.querySelector('#editor'), {
+    lineNumbers: true,
+    theme: 'monokai',
+    mode: 'javascript'
+})
 
 function salvarArquivo() {
     const conteudoDoArquivo = $myCodeMirror.getValue();
