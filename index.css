@@ -98,3 +98,29 @@ button {
     width: 0.25rem;
     height: 0.0625rem;
 }
+
+#menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height:100%;
+    background-color:#303030;
+    color:white;
+    top:3.3rem;
+    visibility: hidden;
+    z-index:2;
+    border-radius: 0.5rem;
+}
+
+#menu.open {
+    visibility: visible;
+    width: 20%;
+    height:40%;
+    left: 80%;
+}
+
+.menu_list {
+    list-style: none;
+}
