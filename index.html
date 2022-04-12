@@ -64,7 +64,10 @@
         })
 
         ipcRenderer.on('main/abrir_arquivo', function (event, mainMessage) {
-            $myCodeMirror.setValue(mainMessage.data)
+            if (mainMessage.status == 200) {
+                currentOpenFile = mainMessage.path
+                $myCodeMirror.setValue(mainMessage.data)
+            }
         })
 
     </script>

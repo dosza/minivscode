@@ -20,7 +20,7 @@ function createWindow() {
         }
     })
     win.loadURL(`file:///${__dirname}/index.html`)
-    //win.webContents.openDevTools()
+    win.webContents.openDevTools()
     win.removeMenu()
 
 }
@@ -67,16 +67,18 @@ ipcMain.on('renderer/salvar_arquivo', async (event, mensagem) => {
 ipcMain.on('renderer/abrir_arquivo', async (event, message) => {
     const { filePaths, canceled } = await dialog.showOpenDialog()
     if (canceled) {
-        event.reply('main/abrir_arquivo', { status: 400, msg: 'Usuário cancelou' })
+        event.reply('main/abrir_arquivo', { status: 400, path:'',text:'', msg: 'Usuário cancelou' })
         return false
     }
 
 
     readFile(filePaths[0], 'utf-8',(err, text) => {
         if (err) throw err;
+
         event.reply('main/abrir_arquivo', {
             status: 200, 
-            data:text
+            data:text,
+            path:filePaths[0]
         });
     })
 
