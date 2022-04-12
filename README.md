@@ -16,7 +16,7 @@ Funcionalidades
 ---
 - [x]   Abrir Arquivo 
 - [x]   Salvar Arquivo
-- [x]   Salvar Como ...
+- [ ]   Salvar Como ...
 - [ ]   Fechar Arquivo
 - [ ]   Implementar *ContextIsolation*
 - [ ]   Detectar formato de arquivo e atualizar o high-light 
