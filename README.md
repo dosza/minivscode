@@ -15,7 +15,8 @@ Foi parcialmente reimplementado misturando aspectos do VSCode e do Gedit
 Funcionalidades
 ---
 - [x]   Abrir Arquivo 
-- [x]   Salvar Arquivo 
+- [x]   Salvar Arquivo
+- [x]   Salvar Como ...
 - [ ]   Fechar Arquivo
 - [ ]   Implementar *ContextIsolation*
 - [ ]   Detectar formato de arquivo e atualizar o high-light 
