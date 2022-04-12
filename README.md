@@ -22,11 +22,6 @@ Funcionalidades
 - [ ]   Salvar as preferencias do editor *.preferences.json*
 
 
-
-Getting Started
----
-Instalando as dependencias
-
 Getting Started!
 ---
 Clonando projeto
