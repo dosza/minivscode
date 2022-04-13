@@ -18,8 +18,6 @@
             <div class="button_bar">
                 <button id="btnAbrir" onclick="abrirArquivo()"><i class="fa fa-folder-open-o" aria-hidden="true"></i>
                 </button>
-                <button id="btnSalvar" onclick="salvarArquivo()"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                </button>
                 <div class="logo_app">
                     <h1>Mini </h1>
                     <img id="logo"
@@ -28,6 +26,21 @@
                 <div>
                     <button onclick="avisoDev()"><i class="fa fa-bars" aria-hidden="true"></i></button>
                 </div>
+                <button id="btnSalvar" onclick="salvarArquivo()"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                </button>
+
+            </div>
+            <div id="menu">
+                <div class="menu_title">
+                </div>
+                <ul class="menu_list">
+                    <li>Salvar como...</li>
+                    <li>Localizar...</li>
+                    <li>Localizar e substituir...</li>
+                    <!----   <li>Modo destaque</li> -->
+                    <li>Preferencias</li>
+                    <li>Sobre o editor</li>
+                </ul>
             </div>
 
         </header>
@@ -37,35 +50,7 @@
            </textarea>
         </div>
     </div>
-    <script type="text/javascript">
-        const $myCodeMirror = CodeMirror.fromTextArea(document.querySelector('#editor'), {
-            lineNumbers: true,
-            theme: 'monokai',
-            mode: 'javascript'
-        })
-
-        const { ipcRenderer } = require('electron')
-
-        function salvarArquivo() {
-            const conteudoDoArquivo = $myCodeMirror.getValue();
-            ipcRenderer.send('renderer/salvar_arquivo', conteudoDoArquivo)
-
-        }
-
-        function avisoDev() {
-            alert('Em desenvolvimento')
-        }
-        function abrirArquivo() {
-            ipcRenderer.send('renderer/abrir_arquivo', '')
-        }
-
-        ipcRenderer.on('main/salvar_arquivo', function (event, mainMessage) {
-            console.log(mainMessage)
-        })
-
-        ipcRenderer.on('main/abrir_arquivo', function (event, mainMessage) {
-            $myCodeMirror.setValue(mainMessage.data)
-        })
+    <script type="text/javascript" src="frontend.js">
 
     </script>
 </body>

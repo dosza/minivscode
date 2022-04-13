@@ -6,13 +6,12 @@
 }
 
 body {
-    overflow: auto;
+    background-color: #262626;
 
 }
 
 .container {
     display: flex;
-    width: 100%;
     height: 100%;
     flex-direction: column;
     background-color: #262626;
@@ -71,10 +70,10 @@ header {
 button {
     border: 0;
     border-radius: 0.13rem;
-    background: #0078d7;
+    background: #262626;
     color: white;
-    padding: 0.125rem;
-    margin: 0.125rem;
+    padding: 0.25rem;
+    margin: 0.25rem;
     font-size: 1.25rem;
 }
 
@@ -88,13 +87,61 @@ button {
 .cm-s-monokai.CodeMirror {
     width: 100%;
     height: 100%;
-    overflow: hidden;
-
-
 }
 
 /* width */
 ::-webkit-scrollbar {
-    width: 0.25rem;
-    height: 0.0625rem;
+    background-color: #262626;
+    display: none;
+}
+
+.CodeMirror ::-webkit-scrollbar{
+    display: block;
+    width: 0.5rem;
+    height: 0.25rem;
+}
+.CodeMirror ::-webkit-scrollbar-thumb {
+    background-color: gray;
+    border-radius: 0.5rem;
+}
+
+#menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #303030;
+    color: white;
+    top: 3.3rem;
+    visibility: hidden;
+    z-index: 2;
+    border-radius: 0.5rem;
+    overflow: auto;
+}
+
+#menu.open {
+    visibility: visible;
+    width: 20%;
+    height: 40%;
+    left: 79.2%;
+}
+
+.menu_title {
+    padding: 0.25rem;
+    margin: 0.25rem;
+}
+
+.menu_list {
+    list-style: none;
+    height: 100%;
+}
+
+#menu ul li {
+    position: relative;
+    top: 1.0rem;
+    font-size: 0.9rem;
+   /* border-bottom: 1px solid #ffffff;*/
+    padding: 0.25rem;
 }
