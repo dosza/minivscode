@@ -95,11 +95,12 @@ button {
     display: none;
 }
 
-.CodeMirror ::-webkit-scrollbar{
+.CodeMirror ::-webkit-scrollbar {
     display: block;
     width: 0.5rem;
     height: 0.25rem;
 }
+
 .CodeMirror ::-webkit-scrollbar-thumb {
     background-color: gray;
     border-radius: 0.5rem;
@@ -126,6 +127,8 @@ button {
     width: 20%;
     height: 40%;
     left: 79.2%;
+    z-index: 5;
+
 }
 
 .menu_title {
@@ -138,10 +141,14 @@ button {
     height: 100%;
 }
 
-#menu ul li {
+#menu ol li {
     position: relative;
     top: 1.0rem;
     font-size: 0.9rem;
-   /* border-bottom: 1px solid #ffffff;*/
+    /* border-bottom: 1px solid #ffffff;*/
     padding: 0.25rem;
+}
+
+#editor.open {
+    z-index: -2;
 }

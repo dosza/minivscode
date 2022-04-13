@@ -1,10 +1,17 @@
-const { ipcRenderer } = require('electron')
-
-
 let currentOpenFile = '';
 let currentOpenDialog  = false
 let currentSaveDialog = false
 const divMenu = document.querySelector('#menu')
+const editor = document.getElementById('editor')
+const menuList  = document.getElementById('menu_list')
+
+const menuItems =[ ...menuList.childNodes]
+
+
+menuItems.map(item =>{
+    item.addEventListener('click',handleMenuItem)
+})
+
 
 const $myCodeMirror = CodeMirror.fromTextArea(document.querySelector('#editor'), {
     lineNumbers: true,
@@ -12,6 +19,17 @@ const $myCodeMirror = CodeMirror.fromTextArea(document.querySelector('#editor'),
     mode: 'javascript'
 })
 
+const { ipcRenderer } = require('electron')
+
+function handleMenuItem (event){
+  let id = event.target.id 
+  if ( id == 1) {
+      salvarArquivo()
+  }
+
+  handleMenu()
+    
+}
 function salvarArquivo() {
     const conteudoDoArquivo = $myCodeMirror.getValue();
     if (currentSaveDialog == false){
@@ -24,14 +42,13 @@ function salvarArquivo() {
 function handleMenu() {
     if (divMenu.className == '') {
         divMenu.className = 'open'
+        editor.className = 'open'
     } else {
         divMenu.className = ''
+        editor.className = ''
     }
 }
-function avisoDev() {
-    handleMenu()
 
-}
 function abrirArquivo() {
     if ( currentOpenDialog == false ){
         ipcRenderer.send('renderer/abrir_arquivo', '')
