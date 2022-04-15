@@ -1,6 +1,5 @@
 let currentOpenFile = '';
-let currentOpenDialog  = false
-let currentSaveDialog = false
+let isIODialogOpen = false 
 const divMenu = document.querySelector('#menu')
 const editor = document.getElementById('editor')
 const menuList  = document.getElementById('menu_list')
@@ -32,9 +31,9 @@ function handleMenuItem (event){
 }
 function salvarArquivo() {
     const conteudoDoArquivo = $myCodeMirror.getValue();
-    if (currentSaveDialog == false){
+    if (isIODialogOpen == false){
         ipcRenderer.send('renderer/salvar_arquivo', conteudoDoArquivo)
-        currentSaveDialog = true
+        isIODialogOpen = true
     }
 }
 
@@ -50,16 +49,16 @@ function handleMenu() {
 }
 
 function abrirArquivo() {
-    if ( currentOpenDialog == false ){
+    if ( isIODialogOpen == false ){
         ipcRenderer.send('renderer/abrir_arquivo', '')
-        currentOpenDialog = true
+       isIODialogOpen = true
     }
 
 }
 
 ipcRenderer.on('main/salvar_arquivo', function (event, mainMessage) {
     console.log(mainMessage)
-    currentSaveDialog = false
+    isIODialogOpen = false
 })
 
 ipcRenderer.on('main/abrir_arquivo', function (event, mainMessage) {
@@ -67,5 +66,6 @@ ipcRenderer.on('main/abrir_arquivo', function (event, mainMessage) {
         currentOpenFile = mainMessage.path
         $myCodeMirror.setValue(mainMessage.data)
     }
-    currentOpenDialog = false
+
+    isIODialogOpen = false
 })
