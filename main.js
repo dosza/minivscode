@@ -20,7 +20,7 @@ function createWindow() {
         }
     })
     win.loadURL(`file:///${__dirname}/index.html`)
-    //win.webContents.openDevTools()
+    win.webContents.openDevTools()
     win.removeMenu()
 
 }
@@ -67,19 +67,36 @@ ipcMain.on('renderer/salvar_arquivo', async (event, mensagem) => {
 ipcMain.on('renderer/abrir_arquivo', async (event, message) => {
     const { filePaths, canceled } = await dialog.showOpenDialog()
     if (canceled) {
-        event.reply('main/abrir_arquivo', { status: 400, path:'',text:'', msg: 'Usuário cancelou' })
+        event.reply('main/abrir_arquivo', { status: 400, path: '', text: '', msg: 'Usuário cancelou' })
         return false
     }
 
 
-    readFile(filePaths[0], 'utf-8',(err, text) => {
+    readFile(filePaths[0], 'utf-8', (err, text) => {
         if (err) throw err;
 
         event.reply('main/abrir_arquivo', {
-            status: 200, 
-            data:text,
-            path:filePaths[0]
+            status: 200,
+            data: text,
+            path: filePaths[0]
         });
+    })
+
+})
+
+ipcMain.on('renderer/salvar_arquivo_atual', async (event, message) => {
+    console.log('try save current file')
+    console.log(message)
+    let { currentOpenFile, conteudoDoArquivo } = message
+
+    writeFile(currentOpenFile, conteudoDoArquivo, 'utf-8', (err, result) => {
+        if (err) throw err;
+
+        event.reply('main/salvar_arquivo_atual', {
+            status: 200, body: {
+                filePath: currentOpenFile
+            }
+        })
     })
 
 })

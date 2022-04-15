@@ -1,14 +1,15 @@
 let currentOpenFile = '';
-let isIODialogOpen = false 
+let isIODialogOpen = false
+let saveAs = false
 const divMenu = document.querySelector('#menu')
 const editor = document.getElementById('editor')
-const menuList  = document.getElementById('menu_list')
+const menuList = document.getElementById('menu_list')
 
-const menuItems =[ ...menuList.childNodes]
+const menuItems = [...menuList.childNodes]
 
 
-menuItems.map(item =>{
-    item.addEventListener('click',handleMenuItem)
+menuItems.map(item => {
+    item.addEventListener('click', handleMenuItem)
 })
 
 
@@ -20,21 +21,33 @@ const $myCodeMirror = CodeMirror.fromTextArea(document.querySelector('#editor'),
 
 const { ipcRenderer } = require('electron')
 
-function handleMenuItem (event){
-  let id = event.target.id 
-  if ( id == 1) {
-      salvarArquivo()
-  }
+function handleMenuItem(event) {
+    let id = event.target.id
+    if (id == 1) {
+        salvarComo()
+    }
 
-  handleMenu()
-    
+    handleMenu()
+
 }
 function salvarArquivo() {
     const conteudoDoArquivo = $myCodeMirror.getValue();
-    if (isIODialogOpen == false){
-        ipcRenderer.send('renderer/salvar_arquivo', conteudoDoArquivo)
-        isIODialogOpen = true
+    if (isIODialogOpen == false) {
+        if (currentOpenFile == '' || saveAs == true) {
+            ipcRenderer.send('renderer/salvar_arquivo', conteudoDoArquivo)
+            isIODialogOpen = true
+        } else {
+            ipcRenderer.send('renderer/salvar_arquivo_atual', { currentOpenFile, conteudoDoArquivo })
+            isIODialogOpen = true
+        }
+
     }
+}
+
+function salvarComo() {
+    saveAs = true
+    salvarArquivo()
+    saveAs = false
 }
 
 
@@ -49,15 +62,18 @@ function handleMenu() {
 }
 
 function abrirArquivo() {
-    if ( isIODialogOpen == false ){
+    if (isIODialogOpen == false) {
         ipcRenderer.send('renderer/abrir_arquivo', '')
-       isIODialogOpen = true
+        isIODialogOpen = true
     }
 
 }
 
 ipcRenderer.on('main/salvar_arquivo', function (event, mainMessage) {
     console.log(mainMessage)
+    if (mainMessage.status == 200) {
+        currentOpenFile = mainMessage.body.filePath
+    }
     isIODialogOpen = false
 })
 
@@ -67,5 +83,13 @@ ipcRenderer.on('main/abrir_arquivo', function (event, mainMessage) {
         $myCodeMirror.setValue(mainMessage.data)
     }
 
+    isIODialogOpen = false
+})
+
+ipcRenderer.on('main/salvar_arquivo_atual', function (event, mainMessage) {
+    if (mainMessage.status == 200) {
+        currentOpenFile = mainMessage.body.filePath
+    }
+    console.log(mainMessage)
     isIODialogOpen = false
 })
