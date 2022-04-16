@@ -70,13 +70,16 @@ function handleMenu() {
     }
 }
 
-
+//função para perguntar se o usuário gostaria
+//de salvar arquivo atualmente aberto
 function gostariaSalvarAberto() {
     let message = 'Há um arquivo aberto, gostaria de salvar ?\n' +
         'Se você não salvar, perderá todas as alterações!!'
     return confirm(message)
 }
 
+//função para perguntar se o usuario gostaria de salvar 
+//o conteudo do "Novo arquivo"
 function gostariaSalvarConteudoNovoArquivo() {
     let message = 'Gostaria de salvar o "Documento não salvo 1"?\n' +
         'Se você não salvar, perderá todas as alterações!!'
