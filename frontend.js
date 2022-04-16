@@ -47,9 +47,12 @@ function salvarArquivo() {
 }
 //função para salvarComo
 function salvarComo() {
-    saveAs = true
-    salvarArquivo()
-    saveAs = false
+    if (isIODialogOpen) {
+        return
+    }
+    const conteudoDoArquivo = $myCodeMirror.getValue();
+    ipcRenderer.send('renderer/salvar_arquivo', conteudoDoArquivo)
+    isIODialogOpen = true
 }
 
 //função para abrir menu
