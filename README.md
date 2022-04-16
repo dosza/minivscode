@@ -17,7 +17,7 @@ Funcionalidades
 - [x]   Abrir Arquivo 
 - [x]   Salvar Arquivo
 - [x]   Salvar Como ...
-- [ ]   Fechar Arquivo
+- [x]   Fechar Arquivo
 - [ ]   Implementar *ContextIsolation*
 - [ ]   Detectar formato de arquivo e atualizar o high-light 
 - [ ]   Salvar as preferencias do editor *.preferences.json*
