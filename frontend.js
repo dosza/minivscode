@@ -27,21 +27,23 @@ function handleMenuItem(event) {
     }
 
     handleMenu()
-
 }
 // função para salvar arquivo
 function salvarArquivo() {
     const conteudoDoArquivo = $myCodeMirror.getValue();
-    if (isIODialogOpen == false) {
-        if (currentOpenFile == '' || saveAs == true) {
-            ipcRenderer.send('renderer/salvar_arquivo', conteudoDoArquivo)
-            isIODialogOpen = true
-        } else {
-            ipcRenderer.send('renderer/salvar_arquivo_atual', { currentOpenFile, conteudoDoArquivo })
-            isIODialogOpen = true
-        }
-
+    console.log('entrei em salvar arquivo')
+    //não faz nada se o IODialog estiver ocupado
+    if (isIODialogOpen) {
+        return
     }
+
+    //caso não tenha arquivo aberto
+    if (currentOpenFile == '') {
+        ipcRenderer.send('renderer/salvar_arquivo', conteudoDoArquivo)
+    } else { //salvo o arquivo atual
+        ipcRenderer.send('renderer/salvar_arquivo_atual', { currentOpenFile, conteudoDoArquivo })
+    }
+    isIODialogOpen = true
 }
 //função para salvarComo
 function salvarComo() {
