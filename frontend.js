@@ -136,6 +136,11 @@ function abrirArquivo() {
 
 }
 
+// limpa o conteudo $myCodeMirror.value após a inicialização da página
+document.addEventListener('DOMContentLoaded', function () {
+    $myCodeMirror.setValue('')
+})
+
 ipcRenderer.on('main/salvar_arquivo', function (event, mainMessage) {
     console.log(mainMessage)
     if (mainMessage.status == 200) {
@@ -165,8 +170,3 @@ ipcRenderer.on('main/salvar_arquivo_atual', function (event, mainMessage) {
     isIODialogOpen = false
 })
 
-
-// limpa o conteudo $myCodeMirror.value após a inicialização da página
-document.addEventListener('DOMContentLoaded', function () {
-    $myCodeMirror.setValue('')
-})
