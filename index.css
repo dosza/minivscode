@@ -77,6 +77,10 @@ button {
     font-size: 1.25rem;
 }
 
+button:hover{
+    background:#404040;
+}
+
 .CodeMirror {
     border: 1px line #ffffff;
     margin-bottom: 15px;
@@ -125,9 +129,11 @@ button {
 #menu.open {
     visibility: visible;
     width: 20%;
-    height: 40%;
-    left: 79.2%;
+    height: 14.0rem;
+    left: 79.25%;
     z-index: 5;
+    padding: 0.25rem;
+    margin: 0.25rem;
 
 }
 
@@ -139,14 +145,29 @@ button {
 .menu_list {
     list-style: none;
     height: 100%;
+    width: 100%;
+    margin: 0.25rem;
+    padding: 0.25rem;
 }
 
 #menu ol li {
-    position: relative;
-    top: 1.0rem;
+    display: flex;
+    align-items: center;
+    justify-content:left;
     font-size: 0.9rem;
-    /* border-bottom: 1px solid #ffffff;*/
-    padding: 0.25rem;
+    padding: 0.25rem; 
+    margin: 0.25rem;
+}
+
+#menu ol li.list_separator {
+    margin-bottom: 0.375rem;
+    padding-bottom: 0.375rem;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+#menu.open #menu_list li:hover {
+    background: #404040;
+    border-radius: 0.25rem;
 }
 
 #editor.open {

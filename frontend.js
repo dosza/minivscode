@@ -28,6 +28,12 @@ function handleMenuItem(event) {
     if (id == 2) {
         fecharArquivo()
     }
+    if (id >= 3 && id < 6) {
+        alert('em desenvolvimento!')
+    }
+    if (id == 6) {
+        sobreOEditor()
+    }
     handleMenu()
 }
 // função para salvar arquivo
@@ -137,6 +143,11 @@ function abrirArquivo() {
     ipcRenderer.send('renderer/abrir_arquivo', '')
     isIODialogOpen = true
 
+}
+
+
+function sobreOEditor() {
+    alert('Mini VSCode Hybrid Editor v0.1.0')
 }
 
 // limpa o conteudo $myCodeMirror.value após a inicialização da página
