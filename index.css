@@ -149,8 +149,14 @@ button:hover{
     position: relative;
     top: 1.0rem;
     font-size: 0.9rem;
-    /* border-bottom: 1px solid #ffffff;*/
     padding: 0.25rem;
+    margin: 0.25rem;
+}
+
+#menu ol li.list_separator {
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 0.5rem;
+
 }
 
 #menu.open #menu_list li:hover {
