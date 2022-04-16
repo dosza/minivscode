@@ -1,12 +1,10 @@
-let currentOpenFile = '';
-let isIODialogOpen = false
-let saveAs = false
 const divMenu = document.querySelector('#menu')
 const editor = document.getElementById('editor')
 const menuList = document.getElementById('menu_list')
-
 const menuItems = [...menuList.childNodes]
 
+let currentOpenFile = '';
+let isIODialogOpen = false
 
 menuItems.map(item => {
     item.addEventListener('click', handleMenuItem)
