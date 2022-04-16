@@ -77,6 +77,10 @@ button {
     font-size: 1.25rem;
 }
 
+button:hover{
+    background:#404040;
+}
+
 .CodeMirror {
     border: 1px line #ffffff;
     margin-bottom: 15px;
@@ -147,6 +151,10 @@ button {
     font-size: 0.9rem;
     /* border-bottom: 1px solid #ffffff;*/
     padding: 0.25rem;
+}
+
+#menu.open #menu_list li:hover {
+    background: #404040;
 }
 
 #editor.open {
