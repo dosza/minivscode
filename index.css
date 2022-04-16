@@ -129,9 +129,11 @@ button:hover{
 #menu.open {
     visibility: visible;
     width: 20%;
-    height: 40%;
-    left: 79.2%;
+    height: 14.0rem;
+    left: 79.25%;
     z-index: 5;
+    padding: 0.25rem;
+    margin: 0.25rem;
 
 }
 
@@ -143,24 +145,29 @@ button:hover{
 .menu_list {
     list-style: none;
     height: 100%;
+    width: 100%;
+    margin: 0.25rem;
+    padding: 0.25rem;
 }
 
 #menu ol li {
-    position: relative;
-    top: 1.0rem;
+    display: flex;
+    align-items: center;
+    justify-content:left;
     font-size: 0.9rem;
-    padding: 0.25rem;
+    padding: 0.25rem; 
     margin: 0.25rem;
 }
 
 #menu ol li.list_separator {
+    margin-bottom: 0.375rem;
+    padding-bottom: 0.375rem;
     border-bottom: 1px solid #1a1a1a;
-    padding-bottom: 0.5rem;
-
 }
 
 #menu.open #menu_list li:hover {
     background: #404040;
+    border-radius: 0.25rem;
 }
 
 #editor.open {
