@@ -33,7 +33,6 @@ function handleMenuItem(event) {
 // função para salvar arquivo
 function salvarArquivo() {
     const conteudoDoArquivo = $myCodeMirror.getValue();
-    console.log('entrei em salvar arquivo')
     //não faz nada se o IODialog estiver ocupado
     if (isIODialogOpen) {
         return
@@ -102,7 +101,6 @@ function acoesAntesdeFecharArquivo() {
     }
 }
 function fecharArquivo() {
-    console.log('entrei em fecharArquivo')
     if (isIODialogOpen) {
         return
     }
@@ -121,7 +119,6 @@ function acoesAntesdeAbrirArquivo() {
         }
     } else {
         if ($myCodeMirror.getValue() != '') {
-            console.log('entrei em codemirror != ""')
             if (gostariaSalvarConteudoNovoArquivo()) {
                 salvarArquivo()
             }
@@ -130,7 +127,6 @@ function acoesAntesdeAbrirArquivo() {
 }
 //função para abrir arquivo
 function abrirArquivo() {
-    console.log('entrando em abrirArquivo')
     if (isIODialogOpen) {
         return
     }
