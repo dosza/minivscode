@@ -19,6 +19,7 @@ const $myCodeMirror = CodeMirror.fromTextArea(document.querySelector('#editor'),
 
 const { ipcRenderer } = require('electron')
 
+//função para tratar eventos para cada item de menuList
 function handleMenuItem(event) {
     let id = event.target.id
     if (id == 1) {
@@ -28,6 +29,7 @@ function handleMenuItem(event) {
     handleMenu()
 
 }
+// função para salvar arquivo
 function salvarArquivo() {
     const conteudoDoArquivo = $myCodeMirror.getValue();
     if (isIODialogOpen == false) {
@@ -41,19 +43,22 @@ function salvarArquivo() {
 
     }
 }
-
+//função para salvarComo
 function salvarComo() {
     saveAs = true
     salvarArquivo()
     saveAs = false
 }
 
-
+//função para abrir menu
 function handleMenu() {
+    //caso o menu esteja fechado
     if (divMenu.className == '') {
+        //adiciona classe para abrir o menu
         divMenu.className = 'open'
         editor.className = 'open'
     } else {
+        //remove classes para fechar menu
         divMenu.className = ''
         editor.className = ''
     }
