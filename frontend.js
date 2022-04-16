@@ -25,7 +25,9 @@ function handleMenuItem(event) {
     if (id == 1) {
         salvarComo()
     }
-
+    if (id == 2) {
+        fecharArquivo()
+    }
     handleMenu()
 }
 // função para salvar arquivo
@@ -69,11 +71,72 @@ function handleMenu() {
     }
 }
 
-function abrirArquivo() {
-    if (isIODialogOpen == false) {
-        ipcRenderer.send('renderer/abrir_arquivo', '')
-        isIODialogOpen = true
+
+function gostariaSalvarAberto() {
+    let message = 'Há um arquivo aberto, gostaria de salvar ?\n' +
+        'Se você não salvar, perderá todas as alterações!!'
+    return confirm(message)
+}
+
+function gostariaSalvarConteudoNovoArquivo() {
+    let message = 'Gostaria de salvar o "Documento não salvo 1"?\n' +
+        'Se você não salvar, perderá todas as alterações!!'
+    return confirm(message)
+}
+
+function acoesAntesdeFecharArquivo() {
+    if (isIODialogOpen) {
+        return
     }
+
+    if (currentOpenFile != '') {
+        if (gostariaSalvarAberto()) {
+            salvarArquivo()
+        }
+    } else {
+        if ($myCodeMirror.getValue() != '') {
+            if (gostariaSalvarConteudoNovoArquivo()) {
+                salvarArquivo()
+            }
+        }
+    }
+}
+function fecharArquivo() {
+    console.log('entrei em fecharArquivo')
+    if (isIODialogOpen) {
+        return
+    }
+    acoesAntesdeFecharArquivo()
+    $myCodeMirror.setValue("")
+    currentOpenFile = ''
+}
+function acoesAntesdeAbrirArquivo() {
+    if (isIODialogOpen) {
+        return
+    }
+
+    if (currentOpenFile != '') {
+        if (gostariaSalvarAberto()) {
+            salvarArquivo()
+        }
+    } else {
+        if ($myCodeMirror.getValue() != '') {
+            console.log('entrei em codemirror != ""')
+            if (gostariaSalvarConteudoNovoArquivo()) {
+                salvarArquivo()
+            }
+        }
+    }
+}
+//função para abrir arquivo
+function abrirArquivo() {
+    console.log('entrando em abrirArquivo')
+    if (isIODialogOpen) {
+        return
+    }
+    acoesAntesdeAbrirArquivo()
+    ipcRenderer.send('renderer/abrir_arquivo', '')
+    isIODialogOpen = true
 
 }
 
@@ -89,7 +152,11 @@ ipcRenderer.on('main/abrir_arquivo', function (event, mainMessage) {
     if (mainMessage.status == 200) {
         currentOpenFile = mainMessage.path
         $myCodeMirror.setValue(mainMessage.data)
+    }else {
+        $myCodeMirror.setValue('')
+        currentOpenFile=''
     }
+    console.log(mainMessage)
 
     isIODialogOpen = false
 })
@@ -100,4 +167,8 @@ ipcRenderer.on('main/salvar_arquivo_atual', function (event, mainMessage) {
     }
     console.log(mainMessage)
     isIODialogOpen = false
+})
+
+document.addEventListener('DOMContentLoaded', function () {
+    $myCodeMirror.setValue('')
 })
