@@ -67,7 +67,12 @@ ipcMain.on('renderer/salvar_arquivo', async (event, mensagem) => {
 ipcMain.on('renderer/abrir_arquivo', async (event, message) => {
     const { filePaths, canceled } = await dialog.showOpenDialog()
     if (canceled) {
-        event.reply('main/abrir_arquivo', { status: 400, path: '', text: '', msg: 'Usuário cancelou' })
+        event.reply('main/abrir_arquivo', {
+            status: 400,
+            path: '',
+            text: '',
+            msg: 'Usuário cancelou'
+        })
         return false
     }
 
@@ -85,8 +90,6 @@ ipcMain.on('renderer/abrir_arquivo', async (event, message) => {
 })
 
 ipcMain.on('renderer/salvar_arquivo_atual', async (event, message) => {
-    console.log('try save current file')
-    console.log(message)
     let { currentOpenFile, conteudoDoArquivo } = message
 
     writeFile(currentOpenFile, conteudoDoArquivo, 'utf-8', (err, result) => {
