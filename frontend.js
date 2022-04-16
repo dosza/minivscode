@@ -148,9 +148,9 @@ ipcRenderer.on('main/abrir_arquivo', function (event, mainMessage) {
     if (mainMessage.status == 200) {
         currentOpenFile = mainMessage.path
         $myCodeMirror.setValue(mainMessage.data)
-    }else {
+    } else {
         $myCodeMirror.setValue('')
-        currentOpenFile=''
+        currentOpenFile = ''
     }
     console.log(mainMessage)
 
@@ -165,6 +165,8 @@ ipcRenderer.on('main/salvar_arquivo_atual', function (event, mainMessage) {
     isIODialogOpen = false
 })
 
+
+// limpa o conteudo $myCodeMirror.value após a inicialização da página
 document.addEventListener('DOMContentLoaded', function () {
     $myCodeMirror.setValue('')
 })
