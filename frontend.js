@@ -11,10 +11,16 @@ menuItems.map(item => {
 })
 
 
-const $myCodeMirror = CodeMirror.fromTextArea(document.querySelector('#editor'), {
+CodeMirror.commands.save = function () {
+    var elt = editor.getWrapperElement();
+    elt.style.background = "#262626";
+    setTimeout(function () { elt.style.background = ""; }, 300);
+};
+
+const $myCodeMirror = CodeMirror.fromTextArea(document.getElementById('editor'), {
     lineNumbers: true,
-    theme: 'monokai',
-    mode: 'javascript'
+    mode: 'javascript',
+    theme: 'monokai'
 })
 
 const { ipcRenderer } = require('electron')
